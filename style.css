@@ -99,7 +99,9 @@ font:15px/1.55 system-ui,sans-serif}a{color:inherit;text-decoration:none}button{
 .contact-jump{display:inline-block;margin-top:14px;padding:6px 12px;border:1px solid #666;font:12px var(--mono)}
 .contact-jump:hover{background:#eee;color:#111}
 .contact p{display:flex;align-items:center;gap:14px;margin:0;color:var(--muted)}
-.contact .discord-contact{color:var(--ink);font:700 22px var(--serif);text-decoration:underline;text-underline-offset:3px}
-.contact .discord-contact:hover{color:var(--lilac)}
+.contact .discord-contact{color:#fff;font:700 22px var(--serif);text-decoration:underline;text-underline-offset:3px}
+.contact .discord-contact:hover{text-decoration-thickness:2px}
+.discord-label{display:inline-flex;align-items:center;gap:8px;color:#a7a2ff;font-weight:700}
+.discord-label img{object-fit:contain}
 
 .footer{justify-content:flex-end}
