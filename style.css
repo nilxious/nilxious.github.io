@@ -95,3 +95,8 @@ font:15px/1.55 system-ui,sans-serif}a{color:inherit;text-decoration:none}button{
 .shots-models .shot img{height:100%;max-height:none}
 @media(min-width:620px){.shots.shots-models{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(min-width:900px){.shots.shots-models{grid-template-columns:repeat(5,minmax(0,1fr))}}
+
+.contact-jump{display:inline-block;margin-top:14px;padding:6px 12px;border:1px solid #666;font:12px var(--mono)}
+.contact-jump:hover{background:#eee;color:#111}
+.contact p{display:flex;align-items:center;gap:14px;margin:0;color:var(--muted)}
+.contact strong{color:var(--ink);font:700 22px var(--serif)}
