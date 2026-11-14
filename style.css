@@ -85,3 +85,10 @@ font:15px/1.55 system-ui,sans-serif}a{color:inherit;text-decoration:none}button{
   margin-top:-.025em;
   background:url("wordmark-underline.svg") center / contain no-repeat;
 }
+
+.game-link{display:flex;align-items:center;gap:14px;width:fit-content;margin-bottom:20px;padding:8px 16px 8px 8px;background:#222;border:1px solid #414141;font-weight:650}
+.game-link img{width:64px;height:64px;object-fit:cover}
+.game-link:hover{background:#343434}
+.shots-models{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(min-width:650px){.shots-models{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(min-width:1000px){.shots-models{grid-template-columns:repeat(5,minmax(0,1fr))}}
