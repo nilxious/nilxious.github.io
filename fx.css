@@ -1,0 +1,134 @@
+/* Per-project title themes. Each card (.card[data-theme]) and project page
+   (.project[data-theme]) gets its own lettering, an emblem from media/fx/,
+   and on project pages (or while a card is hovered) particles from fx.js. */
+
+.card[data-theme] h3,
+.project[data-theme] .project-title h1{
+  position:relative;display:inline-block;
+  background:var(--ink,var(--chrome));-webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 1px 1px #000c) drop-shadow(0 0 10px var(--glow,transparent));
+}
+.project[data-theme] .project-title h1{padding-right:.04em;--icon-gap:.08em}
+
+/* Emblem after the title (and an optional one before it) */
+.card[data-theme] h3::after,
+.project[data-theme] .project-title h1::after,
+.card[data-theme] h3::before,
+.project[data-theme] .project-title h1::before{
+  position:absolute;pointer-events:none;background-position:center;background-size:contain;background-repeat:no-repeat;
+}
+[data-theme] h3::after,
+[data-theme] .project-title h1::after{content:var(--icon-on,none);background-image:var(--icon);
+  width:var(--icon-size,1.05em);height:var(--icon-size,1.05em);left:calc(100% + var(--icon-gap,.22em));top:50%;translate:0 -54%;rotate:var(--icon-tilt,0deg)}
+[data-theme] h3::before,
+[data-theme] .project-title h1::before{content:var(--icon2-on,none);background-image:var(--icon2);
+  width:var(--icon2-size,.7em);height:var(--icon2-size,.7em);left:var(--icon2-x,-.32em);top:var(--icon2-y,-.42em);rotate:var(--icon2-tilt,-20deg)}
+[data-theme] h3,
+[data-theme] .project-title h1{margin-right:var(--icon-room,0)}
+
+/* Particle layer created by fx.js */
+.fx-layer{position:absolute;inset:-.5em -.3em -.2em;pointer-events:none;overflow:visible;z-index:-1}
+.fx-p{position:absolute;bottom:0;left:var(--x);width:var(--s);height:var(--s);border-radius:50%;
+  animation:var(--anim) var(--d) linear forwards;opacity:0}
+.fx-p.ember{background:radial-gradient(#fff6c8,#ffb13b 45%,#ff4d00aa 70%,transparent 72%);box-shadow:0 0 .2em #ff6a00}
+.fx-p.soul{background:radial-gradient(#f3e6ff,#b06bff 45%,#6a1fd1aa 70%,transparent 72%);box-shadow:0 0 .25em #9b4dff}
+.fx-p.wisp{background:radial-gradient(#ffffff,var(--wisp,#8ff0d6) 50%,transparent 72%);box-shadow:0 0 .35em var(--wisp,#8ff0d6)}
+.fx-p.spark{width:calc(var(--s)*.6);height:calc(var(--s)*.6);background:#fff;box-shadow:0 0 .25em var(--sparkc,#cfd8ff)}
+.fx-p.sparkle,.fx-p.leaf,.fx-p.petal,.fx-p.skull{border-radius:0;background:center/contain no-repeat}
+.fx-p.sparkle{background-image:url("media/fx/star.svg");filter:hue-rotate(var(--hue,0deg))}
+.fx-p.leaf{background-image:url("media/fx/leaf.svg");top:-.3em;bottom:auto}
+.fx-p.petal{border-radius:70% 0 70% 0;background:linear-gradient(135deg,#ffe4ef,#ff86b3);top:-.3em;bottom:auto}
+.fx-p.skull{background-image:url("media/fx/skull.svg");filter:drop-shadow(0 0 .15em #9b4dff)}
+.fx-p.bubble{background:none;border:.05em solid #bff0ffcc;box-shadow:inset 0 0 .08em #fff}
+
+@keyframes fx-rise{0%{opacity:0;transform:translate(0,0) scale(1)}15%{opacity:1}100%{opacity:0;transform:translate(var(--dx),-1.6em) scale(.3)}}
+@keyframes fx-float{0%{opacity:0;transform:translate(0,0)}25%{opacity:.9}100%{opacity:0;transform:translate(var(--dx),-1.2em)}}
+@keyframes fx-fall{0%{opacity:0;transform:translate(0,0) rotate(0)}15%{opacity:1}100%{opacity:0;transform:translate(var(--dx),1.9em) rotate(var(--r))}}
+@keyframes fx-twinkle{0%,100%{opacity:0;transform:scale(.2) rotate(0)}50%{opacity:1;transform:scale(1) rotate(45deg)}}
+@keyframes fx-skull{0%{opacity:0;transform:translate(0,0) scale(.6)}20%{opacity:.95}100%{opacity:0;transform:translate(var(--dx),-1.4em) scale(1)}}
+
+/* ---------------- Themes ---------------- */
+[data-theme]{--icon-on:none;--icon2-on:none}
+
+[data-theme="little-wilds"]{--ink:linear-gradient(180deg,#f2ffd6,#a8e66a 55%,#5aa531);--glow:#7bd34a55;
+  --icon:url("media/fx/sprig.svg");--icon-on:"";--icon-room:1.2em;
+  --icon2:url("media/fx/leaf.svg");--icon2-on:"";--icon2-size:.5em;--icon2-tilt:-35deg}
+[data-theme="dungeons"]{--ink:var(--chrome);--glow:#c9d2ff33;--icon:url("media/fx/sword.svg");--icon-on:"";--icon-room:1.1em;--icon-size:1.25em}
+[data-theme="rpg-environments"]{--ink:linear-gradient(180deg,#fff4cf,#f4c35a 55%,#c9792a);--glow:#f4c35a44;--icon:url("media/fx/d20.svg");--icon-on:"";--icon-room:1.2em}
+[data-theme="haunted-mansion"]{--ink:linear-gradient(180deg,#ffffff,#c9c1ea);--glow:#a99cff55;--icon:url("media/fx/bat.svg");--icon-on:"";--icon-room:1.2em;--icon-tilt:-12deg;--wisp:#cbbcff}
+[data-theme="fantasy-lobby"]{--ink:linear-gradient(90deg,#d8ccff,#8fd8ff 50%,#d8ccff);--glow:#9e8bff55;--icon:url("media/fx/star.svg");--icon-on:"";--icon-room:1.1em}
+[data-theme="low-poly-lobby"]{--ink:linear-gradient(100deg,#ffffff 0 42%,#bff6ff 50%,#ffffff 58%);--glow:#bfefff55}
+[data-theme="steal-an-x"]{--ink:linear-gradient(90deg,#3ff4ff,#7f8bff 50%,#c04dff);--sparkc:#3ff4ff}
+[data-theme="prospecting-style-build"]{--ink:linear-gradient(180deg,#fff6cf,#ffd257 50%,#c48a1c);--glow:#ffd25744;--icon:url("media/fx/pan.svg");--icon-on:"";--icon-room:1.3em;--icon-size:1.25em;--sparkc:#ffd257}
+[data-theme="coastal-village"]{--ink:linear-gradient(180deg,#f0fdff,#86dcf3 55%,#2f93c9);--glow:#4fbfe844}
+[data-theme="anime-village"]{--ink:linear-gradient(180deg,#fff2f7,#ffb8d3 55%,#ff7aa8);--glow:#ff86b355;--icon:url("media/fx/sakura.svg");--icon-on:"";--icon-room:1.1em}
+[data-theme="ghostly-village"]{--ink:linear-gradient(180deg,#faf2ff,#d1a8ff 55%,#9a5cf0);--glow:#a96bff55;--icon:url("media/fx/ghost.svg");--icon-on:"";--icon-room:1.1em;--wisp:#c49bff}
+[data-theme="simulator-city"]{--ink:linear-gradient(transparent,transparent);--icon:url("media/fx/building.svg");--icon-on:"";--icon-room:1.15em;--icon-size:1.15em}
+[data-theme="stud-map-builds"]{--ink:linear-gradient(180deg,#ffffff,#d9dde6);--icon:url("media/fx/studs.svg");--icon-on:"";--icon-room:1.15em;--icon-size:.95em}
+[data-theme="courtroom"]{--ink:linear-gradient(180deg,#fff8e4,#e2c27a 60%,#a8823c);--glow:#e2c27a33;--icon:url("media/fx/scales.svg");--icon-on:"";--icon-room:1.15em}
+[data-theme="armor-sets"]{--ink:var(--chrome);--glow:#c9d2ff33;--icon:url("media/fx/shield.svg");--icon-on:"";--icon-room:1.1em}
+[data-theme="weapons"]{--ink:var(--chrome);--glow:#c9d2ff33;--icon:url("media/fx/swords.svg");--icon-on:"";--icon-room:1.15em}
+[data-theme="miner-s-equilibrium"]{--ink:linear-gradient(180deg,#f8edff,#cfa3ff 50%,#8a4fd6);--glow:#a96bff55;--icon:url("media/fx/crystal.svg");--icon-on:"";--icon-room:1.1em;--hue:40deg}
+[data-theme="dungeon-crawler-lobby"],[data-theme="dungeon-crawler-lobby-ii"]{--ink:linear-gradient(180deg,#fff4d6,#ffc46b 60%,#d9822b);--glow:#ff9a3c44;--icon:url("media/fx/torch.svg");--icon-on:"";--icon-room:1.05em}
+[data-theme="fire-dungeon"]{--ink:linear-gradient(0deg,#b31200,#ff4d00 18%,#ff9100 40%,#ffd54f 62%,#fff6d0 80%,#ff9100);--glow:#ff5a0099}
+[data-theme="necropolis-dungeon"]{--ink:linear-gradient(0deg,#3a0a6e,#7c2cff 20%,#b06bff 42%,#7dffcf 60%,#f3e6ff 78%,#9b4dff);--glow:#8f3dff99;
+  --icon2:url("media/fx/skull.svg");--icon2-on:"";--icon2-size:.62em;--icon2-x:-.78em;--icon2-y:.12em;--icon2-tilt:-8deg}
+[data-theme="necropolis-dungeon"] h3,[data-theme="necropolis-dungeon"] .project-title h1{margin-left:.82em}
+
+/* ---------------- Animated lettering ----------------
+   Everything below moves, so it only runs when the visitor allows motion. */
+@media(prefers-reduced-motion:no-preference){
+  /* Burning text: the gradient flows upward; fx.js adds a heat-wobble filter (.fx-live) */
+  :is(.card,.project)[data-theme="fire-dungeon"] :is(h3,.project-title h1),
+  :is(.card,.project)[data-theme="necropolis-dungeon"] :is(h3,.project-title h1){
+    background-size:100% 260%;animation:fx-burn 1.5s linear infinite}
+  .fx-live .card[data-theme="fire-dungeon"] h3{filter:url(#fx-heat-sm) drop-shadow(0 1px 1px #000) drop-shadow(0 0 .25em #ff5a00)}
+  .fx-live .card[data-theme="necropolis-dungeon"] h3{filter:url(#fx-heat-sm) drop-shadow(0 1px 1px #000) drop-shadow(0 0 .25em #8f3dff)}
+  .fx-live .project[data-theme="fire-dungeon"] .project-title h1{
+    filter:url(#fx-heat) drop-shadow(0 0 .12em #ff6a00) drop-shadow(0 -.1em .35em #ff3d00aa)}
+  .fx-live .project[data-theme="necropolis-dungeon"] .project-title h1{
+    filter:url(#fx-heat) drop-shadow(0 0 .12em #9b4dff) drop-shadow(0 -.1em .35em #6a1fd1aa)}
+  [data-theme="necropolis-dungeon"] :is(h3,.project-title h1)::before{animation:fx-bob 2.6s ease-in-out infinite}
+
+  [data-theme="little-wilds"] :is(h3,.project-title h1)::after{transform-origin:15% 90%;animation:fx-sway 3.2s ease-in-out infinite}
+  [data-theme="little-wilds"] :is(h3,.project-title h1)::before{transform-origin:80% 90%;animation:fx-sway 2.6s ease-in-out infinite reverse}
+  [data-theme="haunted-mansion"] :is(h3,.project-title h1){animation:fx-flicker 5s steps(1) infinite}
+  [data-theme="haunted-mansion"] :is(h3,.project-title h1)::after{animation:fx-flap 1.4s ease-in-out infinite}
+  [data-theme="fantasy-lobby"] :is(h3,.project-title h1){background-size:200% 100%;animation:fx-shimmer 4s linear infinite}
+  [data-theme="fantasy-lobby"] :is(h3,.project-title h1)::after{animation:fx-spin 6s linear infinite}
+  [data-theme="ghostly-village"] :is(h3,.project-title h1)::after,
+  [data-theme="anime-village"] :is(h3,.project-title h1)::after{animation:fx-bob 2.8s ease-in-out infinite}
+  [data-theme="anime-village"] :is(h3,.project-title h1)::after{animation:fx-spin 9s linear infinite}
+  [data-theme="miner-s-equilibrium"] :is(h3,.project-title h1)::after,
+  [data-theme="prospecting-style-build"] :is(h3,.project-title h1)::after{animation:fx-glint 2.4s ease-in-out infinite}
+  [data-theme^="dungeon-crawler-lobby"] :is(h3,.project-title h1)::after{animation:fx-torch .18s steps(2) infinite alternate}
+  [data-theme="steal-an-x"] :is(h3,.project-title h1){animation:fx-glitch 3s steps(1) infinite}
+  [data-theme="low-poly-lobby"] :is(h3,.project-title h1){background-size:250% 100%;animation:fx-shimmer 5s linear infinite}
+  [data-theme="coastal-village"] :is(h3,.project-title h1)::after{animation:fx-wave 2.4s linear infinite}
+}
+/* Steal an X: neon glitch split. Simulator City: white outline lettering. Coastal Village: moving wave underline. */
+:is(.card,.project)[data-theme="steal-an-x"] :is(h3,.project-title h1){filter:drop-shadow(.05em 0 0 #c04dffaa) drop-shadow(-.05em 0 0 #3ff4ffaa) drop-shadow(0 0 .12em #7f8bff) drop-shadow(0 0 .4em #9b5cffaa)}
+:is(.card,.project)[data-theme="simulator-city"] :is(h3,.project-title h1){-webkit-text-stroke:.035em #fff;filter:drop-shadow(0 1px 2px #000)}
+:is(.card,.project)[data-theme="simulator-city"] h3{-webkit-text-stroke-width:1.2px}
+:is(.card,.project)[data-theme="coastal-village"] :is(h3,.project-title h1)::after{content:"";background:url("media/fx/wave.svg") 0 50%/.9em .3em repeat-x;
+  width:100%;height:.3em;left:0;top:auto;bottom:-.18em;translate:none}
+
+/* the ghost emblem follows the purple lettering */
+[data-theme="ghostly-village"] :is(h3,.project-title h1)::after{filter:hue-rotate(105deg) saturate(1.4)}
+
+@keyframes fx-burn{to{background-position:0 -260%}}
+@keyframes fx-sway{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(7deg)}}
+@keyframes fx-flicker{0%,100%{opacity:1}42%{opacity:.55}43%{opacity:1}71%{opacity:.4}72%{opacity:.9}73%{opacity:1}}
+@keyframes fx-flap{0%,100%{transform:scaleX(1) translateY(0)}50%{transform:scaleX(.72) translateY(-.08em)}}
+@keyframes fx-shimmer{to{background-position:-200% 0}}
+@keyframes fx-spin{to{transform:rotate(360deg)}}
+@keyframes fx-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-.12em)}}
+@keyframes fx-glint{0%,100%{filter:brightness(1)}50%{filter:brightness(1.45) drop-shadow(0 0 .15em #fff)}}
+@keyframes fx-torch{from{filter:drop-shadow(0 -.05em .12em #ff9a3c)}to{filter:drop-shadow(0 -.08em .22em #ffb13b) brightness(1.15)}}
+@keyframes fx-glitch{0%,100%{transform:none}91%{transform:translate(.04em,-.02em) skewX(-8deg)}93%{transform:translate(-.05em,.02em)}95%{transform:none}97%{transform:translate(.03em,0) skewX(6deg)}}
+@keyframes fx-wave{to{background-position:.9em 50%}}
+
+/* Card titles are smaller and sit on photos: keep the lettering crisp there */
+.card[data-theme] h3{--icon-size:1.1em}
+.card[data-theme="fire-dungeon"]{--ink:linear-gradient(0deg,#ff5a00,#ffa424 30%,#ffe082 55%,#fffbe8 75%,#ffa424)}
+.card[data-theme="necropolis-dungeon"]{--ink:linear-gradient(0deg,#9b4dff,#c79bff 30%,#a6ffe0 55%,#fbf6ff 75%,#b06bff)}

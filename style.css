@@ -100,7 +100,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--bone);outline-offse
 }
 .contact-jump:hover{background:var(--blood);color:#fff}
 .hero-image{position:relative;display:block;min-height:215px;overflow:hidden;clip-path:polygon(13% 0,100% 0,100% 100%,0 100%)}
-.hero-image img{position:absolute;width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .5s,filter .3s}
+.hero-image img{position:absolute;width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .5s}
 .hero-image::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(100deg,#0c0c0fd9 4%,transparent 42%);pointer-events:none}
 .hero-image:hover img{transform:scale(1.04)}
 .feature{position:absolute;z-index:1;bottom:26px;right:16px;padding:7px 12px 6px;background:#060607d9;border:1px solid #4a4b55;font:500 13px/1 var(--cond);letter-spacing:.18em;text-transform:uppercase}
@@ -122,7 +122,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--bone);outline-offse
   position:relative;display:block;isolation:isolate;overflow:hidden;aspect-ratio:16/10;background:var(--crypt);
   clip-path:polygon(var(--cut) 0,100% 0,100% calc(100% - var(--cut)),calc(100% - var(--cut)) 100%,0 100%,0 var(--cut));
 }
-.card img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease,filter .3s ease}
+.card img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
 .card-info{position:absolute;inset:auto 0 0;z-index:1;display:flex;align-items:flex-end;justify-content:space-between;gap:10px;padding:46px 16px 12px;background:linear-gradient(transparent,#060607f2 68%)}
 .card-info h3{margin:0 0 4px;font:700 clamp(19px,2.1vw,26px)/1 var(--cond);letter-spacing:.07em;text-transform:uppercase}
 .card-info p{margin:0;color:#b4b4bb;font-size:12px}
@@ -130,11 +130,6 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--bone);outline-offse
 .card:hover,.card:focus-visible{--edge:var(--bone)}
 .card:hover img,.card:focus-visible img{transform:scale(1.05)}
 .card:hover .card-info span,.card:focus-visible .card-info span{color:var(--bone);transform:translate(3px,-3px)}
-@media(hover:hover){
-  /* Covers sit slightly in shadow and come alive under the cursor. */
-  .card img,.hero-image img{filter:saturate(.8) brightness(.88) contrast(1.05)}
-  .card:hover img,.card:focus-visible img,.hero-image:hover img{filter:none}
-}
 
 /* One continuous sigil down each outer edge of the map grid. */
 #maps{position:relative}
